@@ -742,6 +742,34 @@ section,
   /* Ajusta este valor según necesites */
 }
 
+#buttom-about {
+  display: flex;
+  justify-content: center;
+}
+
+.about .btn-get-started {
+  color: #060606;
+  font-family: var(--heading-font);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 10px 50px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 40px 0;
+  align-self: center;
+  flex-shrink: 0;
+  border: 2px solid var(--accent-color);
+}
+
+.about .btn-get-started:hover {
+  color: #fff;
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+
 .hero .btn-get-started {
   color: var(--contrast-color);
   font-family: var(--heading-font);
@@ -1096,6 +1124,64 @@ section,
 
 .about .about-images img {
   border-radius: 10px;
+}
+
+/*--------------------------------------------------------------
+# Vision and Mission Section
+--------------------------------------------------------------*/
+.vision_mission .vision_mission-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  text-align: center; 
+  
+  background-color: var(--surface-color);
+  box-shadow: 0px 5px 90px 0px rgba(0, 0, 0, 0.1);
+  padding: 60px 30px;
+  transition: all ease-in-out 0.3s;
+  border-radius: 18px;
+  border-bottom: 5px solid var(--surface-color);
+  height: 100%;
+}
+
+.vision_mission .vision_mission-item .icon {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  margin: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  transition: ease-in-out 0.3s;
+}
+
+.vision_mission .vision_mission-item h3 {
+  font-weight: 700;
+  margin: 10px 0 15px 0;
+  font-size: 22px;
+  transition: ease-in-out 0.3s;
+}
+
+.vision_mission .vision_mission-item p {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+@media (min-width: 1365px) {
+  .vision_mission .vision_mission-item:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+  }
+
+  .vision_mission .vision_mission-item:hover h3 {
+    color: var(--accent-color);
+  }
 }
 
 /*--------------------------------------------------------------
