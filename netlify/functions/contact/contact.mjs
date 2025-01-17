@@ -1,6 +1,35 @@
 const nodemailer = require("nodemailer");
 
 exports.handler = async (event) => {
+  try {
+    let data;
+
+    // Intenta analizar el cuerpo como JSON
+    if (event.headers["content-type"] === "application/json") {
+      data = JSON.parse(event.body);
+    } else {
+      // Analiza los datos si vienen como application/x-www-form-urlencoded
+      const querystring = require("querystring");
+      data = querystring.parse(event.body);
+    }
+
+    const { name, email, subject, message } = data;
+
+    // Aquí procesas los datos como desees
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: "Datos procesados correctamente." }),
+    };
+  } catch (error) {
+    console.error("Error procesando la solicitud:", error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Error interno del servidor." }),
+    };
+  }
+};
+
+exports.handler = async (event) => {
     if (event.httpMethod !== "POST") {
         return {
             statusCode: 405,
