@@ -1,72 +1,62 @@
 const nodemailer = require("nodemailer");
 
 exports.handler = async (event) => {
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: "Método no permitido" }),
+    };
+  }
+
   try {
     let data;
 
-    // Intenta analizar el cuerpo como JSON
+    // Intenta analizar el cuerpo como JSON o x-www-form-urlencoded
     if (event.headers["content-type"] === "application/json") {
-      data = JSON.parse(event.body);
-    } else {
-      // Analiza los datos si vienen como application/x-www-form-urlencoded
+      data = JSON.parse(event.body || "{}");
+    } else if (event.headers["content-type"] === "application/x-www-form-urlencoded") {
       const querystring = require("querystring");
       data = querystring.parse(event.body);
+    } else {
+      throw new Error("Formato de contenido no soportado.");
     }
 
     const { name, email, subject, message } = data;
-    console.log(data);
 
-    // Aquí procesas los datos como desees
+    if (!name || !email || !subject || !message) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Faltan campos obligatorios." }),
+      };
+    }
+
+    // Configuración de Nodemailer
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER, // Usa variables de entorno
+        pass: process.env.EMAIL_PASS, // Usa variables de entorno
+      },
+    });
+
+    const mailOptions = {
+      from: email,
+      to: "juliandia666@gmail.com",
+      subject: `Mensaje de: ${name} - ${subject}`,
+      text: message,
+    };
+
+    // Enviar el correo
+    await transporter.sendMail(mailOptions);
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Datos procesados correctamente." }),
+      body: JSON.stringify({ message: "Correo enviado correctamente" }),
     };
   } catch (error) {
     console.error("Error procesando la solicitud:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Error interno del servidor." }),
+      body: JSON.stringify({ error: "Hubo un error al procesar la solicitud." }),
     };
   }
-};
-
-exports.handler = async (event) => {
-    if (event.httpMethod !== "POST") {
-        return {
-            statusCode: 405,
-            body: JSON.stringify({ error: "Método no permitido" }),
-        };
-    }
-
-    const { name, email, subject, message } = JSON.parse(event.body);
-
-    // Configuración de Nodemailer
-    const transporter = nodemailer.createTransport({
-        service: "gmail", // Puedes usar otros servicios (ej. Outlook, SMTP personalizado)
-        auth: {
-            user: "juliandia666@gmail.com", // Tu email
-            pass: "hohp gjcz mywl cusw", // Tu contraseña
-        },
-    });
-
-    const mailOptions = {
-        from: email,
-        to: "juliandia666@gmail.com", // Correo del destinatario
-        subject: `Mensaje de: ${name} - ${subject}`,
-        text: message,
-    };
-
-    try {
-        await transporter.sendMail(mailOptions);
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ message: "Correo enviado correctamente" }),
-        };
-    } catch (error) {
-        console.error("Error enviando correo:", error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: "Hubo un error al enviar el correo" }),
-        };
-    }
 };
