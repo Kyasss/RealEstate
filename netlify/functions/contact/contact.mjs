@@ -23,6 +23,8 @@ exports.handler = async (event) => {
 
     const { name, email, subject, message } = data;
 
+    console.log(data)
+
     if (!name || !email || !subject || !message) {
       return {
         statusCode: 400,
