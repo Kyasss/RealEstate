@@ -9,21 +9,13 @@ exports.handler = async (event) => {
   }
 
   try {
-    let data;
 
-    // Intenta analizar el cuerpo como JSON o x-www-form-urlencoded
-    if (event.headers["content-type"] === "application/json") {
-      data = JSON.parse(event.body || "{}");
-    } else if (event.headers["content-type"] === "application/x-www-form-urlencoded") {
-      const querystring = require("querystring");
-      data = querystring.parse(event.body);
-    } else {
-      throw new Error("Formato de contenido no soportado.");
-    }
+    const formData = new URLSearchParams(event.body);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const subject = formData.get("subject");
+    const message = formData.get("message");
 
-    const { name, email, subject, message } = data;
-
-    console.log(data)
 
     if (!name || !email || !subject || !message) {
       return {
