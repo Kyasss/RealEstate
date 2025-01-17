@@ -17,6 +17,9 @@ exports.handler = async (event) => {
     const message = formData.get("message");
 
 
+    console.log(formData);
+
+    
     if (!name || !email || !subject || !message) {
       return {
         statusCode: 400,
