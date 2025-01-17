@@ -11,6 +11,7 @@ exports.handler = async (event) => {
   try {
 
     const formData = new URLSearchParams(event.body);
+    console.log(formData.get("name"));
     const name = formData.get("name");
     const email = formData.get("email");
     const subject = formData.get("subject");
@@ -19,7 +20,7 @@ exports.handler = async (event) => {
 
     console.log(formData);
 
-    
+
     if (!name || !email || !subject || !message) {
       return {
         statusCode: 400,
