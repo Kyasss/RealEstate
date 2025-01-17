@@ -14,6 +14,7 @@ exports.handler = async (event) => {
     }
 
     const { name, email, subject, message } = data;
+    console.log(data);
 
     // Aquí procesas los datos como desees
     return {
