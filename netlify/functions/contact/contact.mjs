@@ -44,12 +44,20 @@ exports.handler = async (event) => {
       text: message,
     };
 
-    // Enviar el correo
-    await transporter.sendMail(mailOptions);
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: "Correo enviado correctamente" }),
-    };
+    try {
+      await transporter.sendMail(mailOptions);
+      return {
+        statusCode: 200,
+        body: "OK", 
+      };
+    } catch (error) {
+      console.error("Error enviando correo:", error);
+      return {
+        statusCode: 500,
+        body: "Error al enviar el correo.", 
+      };
+    }
+
   } catch (error) {
     console.error("Error procesando la solicitud:", error);
     return {
