@@ -28,7 +28,6 @@ exports.handler = async (event) => {
       };
     }
 
-    // Configuración de Nodemailer
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
