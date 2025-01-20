@@ -11,15 +11,10 @@ exports.handler = async (event) => {
   try {
 
     const formData = new URLSearchParams(event.body);
-    console.log(formData.get("name"));
     const name = formData.get("name");
     const email = formData.get("email");
     const subject = formData.get("subject");
     const message = formData.get("message");
-
-
-    console.log(formData);
-
 
     if (!name || !email || !subject || !message) {
       return {
@@ -41,6 +36,7 @@ exports.handler = async (event) => {
       to: "juliandia666@gmail.com",
       subject: `Mensaje de: ${name} - ${subject}`,
       text: message,
+      replyTo: email, // Aquí va el correo del remitente
     };
 
     try {
