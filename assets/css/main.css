@@ -496,6 +496,40 @@ h6 {
   margin-bottom: 0px;
 }
 
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zillow {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.zillow-img {
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hover {
+  opacity: 0;
+}
+
+.zillow:hover .hover {
+  opacity: 1;
+}
+
+.zillow:hover .normal {
+  opacity: 0;
+}
+
 .footer .social-links a {
   display: flex;
   align-items: center;
@@ -820,6 +854,40 @@ section,
 .about .btn-get-started:hover {
   color: #fff;
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.zillow {
+  position: relative;
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+}
+
+.zillow-img {
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hover {
+  opacity: 0;
+}
+
+.zillow:hover .hover {
+  opacity: 1;
+}
+
+.zillow:hover .normal {
+  opacity: 0;
 }
 
 .btn-zillow {
