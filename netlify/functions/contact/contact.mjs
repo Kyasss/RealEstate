@@ -11,15 +11,10 @@ exports.handler = async (event) => {
   try {
 
     const formData = new URLSearchParams(event.body);
-    console.log(formData.get("name"));
     const name = formData.get("name");
     const email = formData.get("email");
     const subject = formData.get("subject");
     const message = formData.get("message");
-
-
-    console.log(formData);
-
 
     if (!name || !email || !subject || !message) {
       return {
@@ -31,16 +26,17 @@ exports.handler = async (event) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "juliandia666@gmail.com", // Tu email
-        pass: "hohp gjcz mywl cusw", // Tu contraseña
+        user: "estateagencypport@gmail.com", // Tu email
+        pass: "lgjn xrew pski zqml", // Tu contraseña
       },
     });
 
     const mailOptions = {
       from: email,
-      to: "juliandia666@gmail.com",
-      subject: `Mensaje de: ${name} - ${subject}`,
+      to: "agentemelync@realestateagentemelync.com",
+      subject: `Mensaje de: ${name} - ${subject} - ${email}`,
       text: message,
+      replyTo: email,
     };
 
     try {
