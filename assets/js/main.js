@@ -134,3 +134,52 @@
   new PureCounter();
 
 })();
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Datos de las propiedades
+  const properties = [
+    {
+      title: "Modern Rooftop Deck",
+      status: "RENTED 2024",
+      description: "This Chelsea condo features 3 bedrooms, 2 full baths, a covered parking space, and a rooftop deck. Rented for $3,600 – happy tenants!"
+    },
+    {
+      title: "Modern Condominium Building",
+      status: "RENTED 2024",
+      description: "A contemporary four-story structure with beige and white cladding, large windows, covered parking, and a clean, minimalist design."
+    }
+  ];
+
+  const slide = document.querySelector('.carousel-slide');
+  let currentIndex = 0;
+
+  // Función para actualizar el contenido
+  function updateContent() {
+    const property = properties[currentIndex];
+    document.querySelector('.carousel-title').textContent = property.title;
+    document.querySelector('.carousel-status').textContent = property.status;
+    document.querySelector('.carousel-description').textContent = property.description;
+  }
+
+  // Función para cambiar la diapositiva
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % 2;
+    slide.style.transform = `translateX(-${currentIndex * 50}%)`;
+    updateContent();
+  }
+
+  // Manejo de errores para las imágenes
+  const images = document.querySelectorAll('.carousel-slide img');
+  images.forEach(img => {
+    img.onerror = function () {
+      console.error(`Error loading image: ${img.src}`);
+      img.src = 'assets/img/fallback-image.png';
+    };
+  });
+
+  // Inicializar el contenido
+  updateContent();
+
+  // Iniciar el carrusel
+  setInterval(nextSlide, 10000);
+});

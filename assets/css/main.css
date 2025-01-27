@@ -468,6 +468,70 @@ h6 {
   }
 }
 
+.carousel-fade .carousel-item {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.carousel-fade .carousel-item.active {
+  opacity: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Precargar imágenes para evitar parpadeos */
+.carousel-inner {
+  background-color: #ffffff;
+  /* Color de fondo sutil */
+  border-radius: 1rem;
+  /* Asegura que el contenedor también tenga bordes redondeados */
+  overflow: hidden;
+  /* Mantiene las imágenes dentro de los bordes redondeados */
+}
+
+/* Efecto de zoom suave */
+.carousel-item img {
+  transform: scale(1);
+  transition: transform 1.5s ease-in-out;
+  border-radius: 1rem;
+  /* Bordes redondeados en las imágenes */
+}
+
+.carousel-item.active img {
+  transform: scale(1.02);
+}
+
+/* Asegurarse de que todas las imágenes mantengan los bordes redondeados */
+.img-fluid {
+  border-radius: 1rem !important;
+}
+
+.image-container-square {
+  width: 75%;
+  /* Reduce el ancho al 85% del contenedor padre */
+  padding-bottom: 75%;
+  /* Mantiene la proporción 1:1 */
+  position: relative;
+  margin: 20px 10px;
+  /* Centra el contenedor */
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+/* Estilo para la imagen más pequeña manteniendo proporción 1:1 */
+.smaller-square-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Asegura que la imagen cubra todo el espacio sin distorsionarse */
+}
+
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
@@ -1651,14 +1715,22 @@ section,
 /*--------------------------------------------------------------
 # Real Estate Section
 --------------------------------------------------------------*/
+.real-estate .row {
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
 .real-estate .card {
   background-color: var(--background-color);
   color: var(--default-color);
   border: none;
   position: relative;
-  border-radius: 0px;
+  border-radius: 15px;
   overflow: hidden;
   min-height: 500px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .real-estate .card:before {
@@ -1669,14 +1741,53 @@ section,
   z-index: 2;
 }
 
-.real-estate .card img {
+.real-estate .carousel-slide {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.real-estate .carousel-item {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+
+.real-estate .carousel-item img {
   position: absolute;
-  inset: 0;
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  min-height: 300px;
+  /* Altura mínima si la imagen falla */
+  background-color: #f0f0f0;
+  /* Color de fondo si la imagen falla */
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+  /* Ajusta según necesites */
+}
+
+.carousel-slide {
+  display: flex;
+  width: 200%;
+  /* Para acomodar las dos imágenes */
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+  width: 50%;
+  /* Cada imagen ocupa la mitad del espacio */
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+  /* Evita que las imágenes se compriman */
 }
 
 .real-estate .card .card-body {
@@ -1686,17 +1797,6 @@ section,
   right: 0;
   z-index: 3;
   padding: 30px;
-}
-
-.real-estate .card .card-body .sale-rent {
-  display: inline-block;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--contrast-color);
-  padding: 4px 20px;
-  border: 2px solid var(--accent-color);
-  border-radius: 50px;
-  margin-bottom: 10px;
 }
 
 .real-estate .card .card-body h3 {
@@ -1734,6 +1834,12 @@ section,
   visibility: visible;
   opacity: 1;
   height: 150px;
+}
+
+@media (max-width: 1200px) {
+  .real-estate .row {
+    max-width: 95%;
+  }
 }
 
 /*--------------------------------------------------------------
