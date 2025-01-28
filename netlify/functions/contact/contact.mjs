@@ -45,14 +45,14 @@ exports.handler = async (event) => {
       ],
       source: "realestateagentemelync.com",
       tags: ["Lead desde el formulario"],
-      stage: "lead"
+      stage: "lead",
     };
 
     // Configuración del API de Follow Up Boss
     const apiKey = "fka_09UkPzwWHSOSDH94Mfaf8DJAgsO2k8spc4"; 
     const apiUrl = "https://api.followupboss.com/v1/people";
 
-    // Crear el contacto
+    // Realizar la solicitud al API
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -62,21 +62,28 @@ exports.handler = async (event) => {
       body: JSON.stringify(data),
     });
 
-    const responseJson = await response.json();
-    console.log(responseJson); // Ver el contenido de la respuesta
-    return {
-      statusCode: response.status,
-      body: JSON.stringify({
-        error: "Error al enviar los datos.",
-        details: errorResponse,
-      }),
-    };
-
-    return {
-      statusCode: 200,
-      body: 'OK',
-    };
-
+    // Verificar la respuesta del servidor
+    const status = response.status;
+    if (status === 201) {
+      return {
+        statusCode: 201,
+        body: JSON.stringify({ message: "Nuevo contacto creado." }),
+      };
+    } else if (status === 200) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ message: "Contacto existente actualizado." }),
+      };
+    } else {
+      const errorResponse = await response.text();
+      return {
+        statusCode: status,
+        body: JSON.stringify({
+          error: "Error al enviar los datos.",
+          details: errorResponse,
+        }),
+      };
+    }
   } catch (error) {
     console.error("Error procesando la solicitud:", error);
     return {
