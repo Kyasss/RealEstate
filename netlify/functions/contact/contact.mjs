@@ -65,29 +65,11 @@ exports.handler = async (event) => {
     // Verificar la respuesta del servidor
     const status = response.status;
     if (status === 201 || status === 200) {
-      const contactData = await response.json();
-      
-      // Crear el evento con el mensaje
-      const eventData = {
-        personId: contactData.id,
-        type: "note",
-        message: `Mensaje: ${message}`
+      return {
+        statusCode: 201,
+        body: 'OK',
       };
-      // Hacer la llamada para crear el evento
-      const eventResponse = await fetch("https://api.followupboss.com/v1/events", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Basic ${Buffer.from(`${apiKey}:`).toString("base64")}`,
-        },
-        body: JSON.stringify(eventData),
-      });
-      if (eventResponse.status === 201) {
-        return {
-          statusCode: 201,
-          body: 'OK',
-        };
-      }
+
     } else {
       const errorResponse = await response.text();
       return {
