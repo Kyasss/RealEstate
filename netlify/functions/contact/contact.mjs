@@ -62,8 +62,8 @@ exports.handler = async (event) => {
       body: JSON.stringify(data),
     });
 
-    // Si hay error en la primera llamada
-    const errorResponse = await response.text();
+    const responseJson = await response.json();
+    console.log(responseJson); // Ver el contenido de la respuesta
     return {
       statusCode: response.status,
       body: JSON.stringify({
