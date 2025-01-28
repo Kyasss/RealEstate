@@ -46,7 +46,6 @@ exports.handler = async (event) => {
       source: "realestateagentemelync.com",
       tags: ["Lead desde el formulario"],
       stage: "lead",
-      notes: `Asunto: ${subject}\nMensaje: ${message}` // Agregamos el asunto y mensaje como notas
     };
 
     // Configuración del API de Follow Up Boss
