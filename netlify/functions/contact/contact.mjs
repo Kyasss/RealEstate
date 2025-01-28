@@ -72,6 +72,11 @@ exports.handler = async (event) => {
       }),
     };
 
+    return {
+      statusCode: 200,
+      body: 'OK',
+    };
+
   } catch (error) {
     console.error("Error procesando la solicitud:", error);
     return {
