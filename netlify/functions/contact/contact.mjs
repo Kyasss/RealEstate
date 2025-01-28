@@ -39,10 +39,13 @@ exports.handler = async (event) => {
       ],
       phones: [
         {
-          value: "",
+          value: subject,
+          type: "mobile"
         }
       ],
       source: "realestateagentemelync.com",
+      tags: ["Lead desde el formulario"],
+      stage: "lead"
     };
 
     // Configuración del API de Follow Up Boss
@@ -58,6 +61,35 @@ exports.handler = async (event) => {
       },
       body: JSON.stringify(data),
     });
+
+    // Si el contacto se creó exitosamente, agregar el mensaje como un evento
+    if (response.status === 201 || response.status === 200) {
+      const contactData = await response.json();
+      
+      // Crear el evento con el mensaje
+      const eventData = {
+        personId: contactData.id,
+        type: "note",
+        message: `Mensaje: ${message}`
+      };
+
+      // Hacer la llamada para crear el evento
+      const eventResponse = await fetch("https://api.followupboss.com/v1/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Basic ${Buffer.from(`${apiKey}:`).toString("base64")}`,
+        },
+        body: JSON.stringify(eventData),
+      });
+
+      if (eventResponse.status === 201) {
+        return {
+          statusCode: 201,
+          body: JSON.stringify({ message: "Contacto y mensaje creados exitosamente." }),
+        };
+      }
+    }
 
     // Si hay error en la primera llamada
     const errorResponse = await response.text();
