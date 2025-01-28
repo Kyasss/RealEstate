@@ -40,19 +40,16 @@ exports.handler = async (event) => {
       phones: [
         {
           value: "",
-          type: "mobile"
         }
       ],
       source: "realestateagentemelync.com",
-      tags: ["Lead desde el formulario"],
-      stage: "lead",
     };
 
     // Configuración del API de Follow Up Boss
     const apiKey = "fka_09UkPzwWHSOSDH94Mfaf8DJAgsO2k8spc4"; 
     const apiUrl = "https://api.followupboss.com/v1/people";
 
-    // Realizar la solicitud al API
+    // Crear el contacto
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -62,28 +59,45 @@ exports.handler = async (event) => {
       body: JSON.stringify(data),
     });
 
-    // Verificar la respuesta del servidor
-    const status = response.status;
-    if (status === 201) {
-      return {
-        statusCode: 201,
-        body: JSON.stringify({ message: "Nuevo contacto creado." }),
+    // Si el contacto se creó exitosamente, agregar el mensaje como un evento
+    if (response.status === 201 || response.status === 200) {
+      const contactData = await response.json();
+      
+      // Crear el evento con el mensaje
+      const eventData = {
+        personId: contactData.id,
+        type: "note",
+        message: `Asunto: ${subject}\n\nMensaje: ${message}`
       };
-    } else if (status === 200) {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ message: "Contacto existente actualizado." }),
-      };
-    } else {
-      const errorResponse = await response.text();
-      return {
-        statusCode: status,
-        body: JSON.stringify({
-          error: "Error al enviar los datos.",
-          details: errorResponse,
-        }),
-      };
+
+      // Hacer la llamada para crear el evento
+      const eventResponse = await fetch("https://api.followupboss.com/v1/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Basic ${Buffer.from(`${apiKey}:`).toString("base64")}`,
+        },
+        body: JSON.stringify(eventData),
+      });
+
+      if (eventResponse.status === 201) {
+        return {
+          statusCode: 201,
+          body: JSON.stringify({ message: "Contacto y mensaje creados exitosamente." }),
+        };
+      }
     }
+
+    // Si hay error en la primera llamada
+    const errorResponse = await response.text();
+    return {
+      statusCode: response.status,
+      body: JSON.stringify({
+        error: "Error al enviar los datos.",
+        details: errorResponse,
+      }),
+    };
+
   } catch (error) {
     console.error("Error procesando la solicitud:", error);
     return {
