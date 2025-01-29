@@ -13,6 +13,9 @@ exports.handler = async (event) => {
     const formData = new URLSearchParams(event.body);
     const name = formData.get("name");
     const email = formData.get("email");
+    const state = formData.get("state");
+    const city = formData.get("city");
+    const property_type = formData.get("property_type");
     const subject = formData.get("subject");
     const message = formData.get("message");
 
@@ -33,9 +36,9 @@ exports.handler = async (event) => {
 
     const mailOptions = {
       from: email,
-      to: "emelync.agent@gmail.com",
+      to: "juliandia666@gmail.com",
       subject: `Mensaje de: ${name} - ${subject} - ${email}`,
-      text: message,
+      text: ` ${state}, ${city}, ${property_type} \n ${message}`,
       replyTo: email,
     };
 
