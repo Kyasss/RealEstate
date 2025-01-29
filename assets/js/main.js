@@ -183,3 +183,70 @@ document.addEventListener('DOMContentLoaded', function () {
   // Iniciar el carrusel
   setInterval(nextSlide, 10000);
 });
+
+// Variable para almacenar los datos una vez cargados
+let statesAndCities = {};
+
+// Obtenemos referencias a los selects
+const stateSelect = document.querySelector('select[name="state"]');
+const citySelect = document.querySelector('select[name="city"]');
+
+// Función para cargar el JSON
+async function loadJSON() {
+  try {
+    const response = await fetch('/forms/US_States_and_Cities.json');
+    if (!response.ok) {
+      throw new Error('No se pudo cargar el archivo JSON');
+    }
+    statesAndCities = await response.json();
+    // Una vez cargado el JSON, cargamos los estados
+    loadStates();
+  } catch (error) {
+    console.error('Error cargando el JSON:', error);
+  }
+}
+
+// Función para cargar los estados
+function loadStates() {
+  // Mantenemos la opción por defecto
+  const defaultOption = stateSelect.options[0];
+  stateSelect.innerHTML = '';
+  stateSelect.appendChild(defaultOption);
+
+  // Agregamos los estados desde el JSON
+  Object.keys(statesAndCities).forEach(state => {
+    const option = document.createElement('option');
+    option.value = state;
+    option.textContent = state;
+    stateSelect.appendChild(option);
+  });
+}
+
+// Función para cargar las ciudades basadas en el estado seleccionado
+function loadCities(state) {
+  // Mantenemos la opción por defecto
+  const defaultOption = citySelect.options[0];
+  citySelect.innerHTML = '';
+  citySelect.appendChild(defaultOption);
+
+  // Si no hay estado seleccionado, dejamos solo la opción por defecto
+  if (!state) return;
+
+  // Agregamos las ciudades del estado seleccionado
+  statesAndCities[state].forEach(city => {
+    const option = document.createElement('option');
+    option.value = city;
+    option.textContent = city;
+    citySelect.appendChild(option);
+  });
+}
+
+// Event listener para cuando cambia el estado
+stateSelect.addEventListener('change', (e) => {
+  loadCities(e.target.value);
+  // Reseteamos el select de ciudad a su valor por defecto
+  citySelect.value = '';
+});
+
+// Inicializamos cargando el JSON cuando se carga la página
+document.addEventListener('DOMContentLoaded', loadJSON);

@@ -118,8 +118,8 @@
                     </div>
 
                     <div class="col-lg-8">
-                        <form action="/.netlify/functions/contact/contact.mjs" method="post" class="php-email-form" data-aos="fade-up"
-                            data-aos-delay="200">
+                        <form action="/.netlify/functions/contact/contact.mjs" method="post" class="php-email-form"
+                            data-aos="fade-up" data-aos-delay="200">
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
@@ -130,6 +130,27 @@
                                 <div class="col-md-6 ">
                                     <input type="email" class="form-control" name="email" placeholder="Tu Email"
                                         required="">
+                                </div>
+
+                                <div class="col-md-3">
+                                    <select name="state" class="form-control" required>
+                                        <option value="">Seleciona tu Estado</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <select name="city" class="form-control" required>
+                                        <option value="">Seleciona tu Ciudad</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <select name="property_type" class="form-control" required>
+                                        <option value="">Seleciona Operación</option>
+                                        <option value="buy">Comprar Propiedad</option>
+                                        <option value="sell">Vender Propiedad</option>
+                                        <option value="rent">Rentar Propiedad</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-12">
@@ -147,7 +168,7 @@
                                     <div class="error-message"></div>
                                     <div class="sent-message">Tu mensaje ha sido enviado. ¡Gracias!</div>
 
-                                    <button type="submit">Evíar Mensaje</button>
+                                    <button type="submit">Envíar Mensaje</button>
                                 </div>
 
                             </div>

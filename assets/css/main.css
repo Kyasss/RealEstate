@@ -1640,6 +1640,7 @@ section,
 /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
+/* Info Items Styles */
 .contact .info-item+.info-item {
   margin-top: 40px;
 }
@@ -1671,10 +1672,12 @@ section,
   font-size: 14px;
 }
 
+/* Form Container */
 .contact .php-email-form {
   height: 100%;
 }
 
+/* Input Fields (Text & Email) and Textarea */
 .contact .php-email-form input[type=text],
 .contact .php-email-form input[type=email],
 .contact .php-email-form textarea {
@@ -1693,12 +1696,46 @@ section,
   border-color: var(--accent-color);
 }
 
-.contact .php-email-form input[type=text]::placeholder,
-.contact .php-email-form input[type=email]::placeholder,
+.contact .php-email-form input::placeholder,
 .contact .php-email-form textarea::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
+  color: #999;
+  opacity: 0.7;
 }
 
+/* Select Fields */
+.contact .php-email-form select {
+  font-size: 14px;
+  padding: 10px 15px;
+  box-shadow: none;
+  border-radius: 0;
+  color: #999;
+  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+  width: 100%;
+  height: auto;
+  transition: 0.4s;
+}
+
+.contact .php-email-form select:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.contact .php-email-form select:valid {
+  color: var(--default-color);
+}
+
+.contact .php-email-form select option {
+  color: var(--default-color);
+  background-color: var(--surface-color);
+  padding: 10px;
+}
+
+.contact .php-email-form select option[value=""] {
+  color: #999;
+}
+
+/* Submit Button */
 .contact .php-email-form button[type=submit] {
   color: var(--contrast-color);
   background: var(--accent-color);
