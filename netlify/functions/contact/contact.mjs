@@ -18,20 +18,21 @@ exports.handler = async (event, context) => {
     const response = await fetch('https://api.followupboss.com/v1/events', {
       method: 'POST',
       headers: {
-        'Authorization': 'fka_09UkPzwWHSOSDH94Mfaf8DJAgsO2k8spc4',
-        'Content-Type': 'application/json',
+        accept: 'application/json',
+        'content-type': 'application/json',
+        authorization: 'Basic ZmthXzA5VWtQemZIcktNUXdxN3dBdjdUT0R6MTVxVTM2OUNTRXo6'
       },
       body: JSON.stringify({
-        source: 'Formulario de Contacto Web',
-        system: 'MiSitioWeb',
-        type: 'General Inquiry',  // Tipo de evento
-        message: message,    // Mensaje del cliente
-        persona: {
-          name: name,
-          email: email,
-          phone: phone,
+        person: {
+          contacted: false,
+          firstName: name,
+          lastName: '',
+          emails: [{value: email}],
+          phones: [{value: phone}]
         },
-        occurredAt: new Date().toISOString(),  // Fecha actual del evento
+        type: 'Inquiry',
+        message: message,
+        description: subject
       }),
     });
 
