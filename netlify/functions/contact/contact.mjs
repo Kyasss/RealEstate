@@ -34,7 +34,7 @@ exports.handler = async (event, context) => {
           lastName: '',
           emails: [{value: email}],
           phones: [{value: phone}],
-          stage: 'Lead'
+          stageId: 1
         },
         type: 'Inquiry',
         message: message,
