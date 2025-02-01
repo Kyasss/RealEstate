@@ -43,9 +43,14 @@ exports.handler = async (event, context) => {
       throw new Error(`Error en la solicitud: ${response.statusText}`);
     }
 
+    const responseData = await response.json();
+
     return {
       statusCode: 200,
+      body: JSON.stringify({ message: 'Datos enviados correctamente', data: responseData }),
     };
+
+    
   } catch (error) {
     
     return {
