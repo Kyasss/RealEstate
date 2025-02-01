@@ -23,16 +23,17 @@ exports.handler = async (event, context) => {
         authorization: 'Basic ZmthXzA5VWtQemJtdEdRbHRIYzY5WHo2NUxuVkJHTFQzMDVZazM6'
       },
       body: JSON.stringify({
-        person: {
-          contacted: false,
-          firstName: name,
-          lastName: '',
-          emails: [{value: email}],
-          phones: [{value: phone}]
-        },
-        type: 'Inquiry',
+        source: "your_website", // Añade la fuente del lead, cambia "your_website"
+        type: 'General Inquiry', // Usa un tipo de evento válido, para que las automatizaciones funcionen
         message: message,
-        description: subject
+        description: subject,
+        person: {
+          firstName: name,
+          lastName: 'No Especificado', // Asegura que lastName no este vacio
+          emails: [{ value: email, type: 'home' }], // Agrega el type de email
+          phones: [{ value: phone, type: 'mobile' }], // Agrega el type de teléfono
+          source: "your_website" // Añade la fuente del lead al objeto person también
+        },
       }),
     });
 
