@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic ZmthXzA5VWtQemZIcktNUXdxN3dBdjdUT0R6MTVxVTM2OUNTRXo6'
+        authorization: 'Basic ZmthXzA5VWtQemJtdEdRbHRIYzY5WHo2NUxuVkJHTFQzMDVZazM6'
       },
       body: JSON.stringify({
         person: {
