@@ -14,6 +14,12 @@ exports.handler = async (event, context) => {
     const message = formData.get("message");
     const phone = formData.get("phone");
 
+    const state = formData.get("state");
+    const city = formData.get("city");
+    const property_type = formData.get("property_type");
+
+
+
 
     const response = await fetch('https://api.followupboss.com/v1/events', {
       method: 'POST',
@@ -23,16 +29,16 @@ exports.handler = async (event, context) => {
         authorization: 'Basic ZmthXzA5VWtQemJtdEdRbHRIYzY5WHo2NUxuVkJHTFQzMDVZazM6'
       },
       body: JSON.stringify({
-        source: "your_website", // Añade la fuente del lead, cambia "your_website"
+        source: "realestateagentemelync.com", // Añade la fuente del lead, cambia "your_website"
         type: 'General Inquiry', // Usa un tipo de evento válido, para que las automatizaciones funcionen
-        message: message,
+        message: `${state} / ${city} - ${property_type} \n${message}`,
         description: subject,
         person: {
           firstName: name,
-          lastName: 'No Especificado', // Asegura que lastName no este vacio
+          lastName: ' ', // Asegura que lastName no este vacio
           emails: [{ value: email, type: 'home' }], // Agrega el type de email
           phones: [{ value: phone, type: 'mobile' }], // Agrega el type de teléfono
-          source: "your_website" // Añade la fuente del lead al objeto person también
+          source: "realestateagentemelync.com" // Añade la fuente del lead al objeto person también
         },
       }),
     });
