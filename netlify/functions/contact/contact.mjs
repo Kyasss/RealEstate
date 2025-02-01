@@ -7,7 +7,13 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const data = JSON.parse(event.body);
+    const formData = new URLSearchParams(event.body);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const subject = formData.get("subject");
+    const message = formData.get("message");
+    const phone = formData.get("phone");
+
 
     const response = await fetch('https://api.followupboss.com/v1/eventos', {
       method: 'POST',
@@ -19,11 +25,11 @@ exports.handler = async (event, context) => {
         source: 'Formulario de Contacto Web',
         system: 'MiSitioWeb',
         type: 'General Inquiry',  // Tipo de evento
-        message: data.message,    // Mensaje del cliente
+        message: message,    // Mensaje del cliente
         persona: {
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
+          name: name,
+          email: email,
+          phone: phone,
         },
         occurredAt: new Date().toISOString(),  // Fecha actual del evento
       }),
