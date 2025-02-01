@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
     const city = formData.get("city");
     const property_type = formData.get("property_type");
 
-    const apiKey = "fka_09UkPzwWHSOSDH94Mfaf8DJAgsO2k8spc4"; 
+    const apiKey = "fka_09UkPzbmtGQltHc69Xz65LnVBGLT305Yk3"; 
 
     const response = await fetch('https://api.followupboss.com/v1/events', {
       method: 'POST',
