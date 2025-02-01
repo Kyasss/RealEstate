@@ -14,6 +14,9 @@ exports.handler = async (event, context) => {
     const message = formData.get("message");
     const phone = formData.get("phone");
 
+    const state = formData.get("state");
+    const city = formData.get("city");
+    const property_type = formData.get("property_type");
 
     const response = await fetch('https://api.followupboss.com/v1/events', {
       method: 'POST',
@@ -31,7 +34,7 @@ exports.handler = async (event, context) => {
           phones: [{value: phone}]
         },
         type: 'Inquiry',
-        message: message,
+        message: `${state} - ${city} - ${property_type} \n${message}`,
         description: subject
       }),
     });
@@ -40,14 +43,12 @@ exports.handler = async (event, context) => {
       throw new Error(`Error en la solicitud: ${response.statusText}`);
     }
 
-    const responseData = await response.json();
-
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Datos enviados correctamente', data: responseData }),
+      body: 'OK',
     };
   } catch (error) {
-    console.error('Error:', error);
+    
     return {
       statusCode: 500,
       body: JSON.stringify({ message: 'Error interno del servidor', error: error.message }),
