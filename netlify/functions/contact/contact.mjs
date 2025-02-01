@@ -14,18 +14,13 @@ exports.handler = async (event, context) => {
     const message = formData.get("message");
     const phone = formData.get("phone");
 
-    const state = formData.get("state");
-    const city = formData.get("city");
-    const property_type = formData.get("property_type");
-
-    const apiKey = "fka_09UkPzbmtGQltHc69Xz65LnVBGLT305Yk3"; 
 
     const response = await fetch('https://api.followupboss.com/v1/events', {
       method: 'POST',
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: `Basic ${Buffer.from(`${apiKey}:`).toString("base64")}`,
+        authorization: 'Basic ZmthXzA5VWtQemZIcktNUXdxN3dBdjdUT0R6MTVxVTM2OUNTRXo6'
       },
       body: JSON.stringify({
         person: {
@@ -33,8 +28,7 @@ exports.handler = async (event, context) => {
           firstName: name,
           lastName: '',
           emails: [{value: email}],
-          phones: [{value: phone}],
-          stageId: 1
+          phones: [{value: phone}]
         },
         type: 'Inquiry',
         message: message,
