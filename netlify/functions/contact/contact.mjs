@@ -16,14 +16,16 @@ exports.handler = async (event, context) => {
 
     const state = formData.get("state");
     const city = formData.get("city");
-    const property_type = formData.get("phone");
+    const property_type = formData.get("property_type");
+
+    const apiKey = "fka_09UkPzwWHSOSDH94Mfaf8DJAgsO2k8spc4"; 
 
     const response = await fetch('https://api.followupboss.com/v1/events', {
       method: 'POST',
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic fka_09UkPzfHrKMQwq7wAv7TODz15qU369CSEz'
+        authorization: `Basic ${Buffer.from(`${apiKey}:`).toString("base64")}`,
       },
       body: JSON.stringify({
         person: {
@@ -43,14 +45,9 @@ exports.handler = async (event, context) => {
       throw new Error(`Error en la solicitud: ${response.statusText}`);
     }
 
-    const responseData = await response.json();
-
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Datos enviados correctamente', data: responseData }),
     };
-
-
   } catch (error) {
     
     return {
