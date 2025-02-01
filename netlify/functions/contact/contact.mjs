@@ -51,7 +51,7 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Datos enviados correctamente', data: responseData }),
+      body: "OK",
     };
   } catch (error) {
     console.error('Error:', error);
