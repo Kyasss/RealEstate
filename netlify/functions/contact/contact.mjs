@@ -34,7 +34,7 @@ exports.handler = async (event, context) => {
           phones: [{value: phone}]
         },
         type: 'Inquiry',
-        message: `${state} - ${city} - ${property_type} \n ${message}`,
+        message: `${state} - ${city} - ${property_type} - ${message}`,
         description: subject
       }),
     });
