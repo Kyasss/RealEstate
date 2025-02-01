@@ -16,14 +16,14 @@ exports.handler = async (event, context) => {
 
     const state = formData.get("state");
     const city = formData.get("city");
-    const property_type = formData.get("property_type");
+    const property_type = formData.get("phone");
 
     const response = await fetch('https://api.followupboss.com/v1/events', {
       method: 'POST',
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic ZmthXzA5VWtQemZIcktNUXdxN3dBdjdUT0R6MTVxVTM2OUNTRXo6'
+        authorization: 'Basic fka_09UkPzfHrKMQwq7wAv7TODz15qU369CSEz'
       },
       body: JSON.stringify({
         person: {
@@ -34,7 +34,7 @@ exports.handler = async (event, context) => {
           phones: [{value: phone}]
         },
         type: 'Inquiry',
-        message: `${state} - ${city} - ${property_type} \n${message}`,
+        message: `${state} - ${city} - ${property_type} \n ${message}`,
         description: subject
       }),
     });
