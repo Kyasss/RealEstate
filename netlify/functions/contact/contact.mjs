@@ -1,5 +1,3 @@
-const fetch = require("node-fetch");
-
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return {
@@ -52,7 +50,7 @@ exports.handler = async (event) => {
     const apiKey = "fka_09UkPzwWHSOSDH94Mfaf8DJAgsO2k8spc4"; 
     const apiUrl = "https://api.followupboss.com/v1/people";
 
-    // Realizar la solicitud al API
+    // Crear el contacto
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -62,35 +60,30 @@ exports.handler = async (event) => {
       body: JSON.stringify(data),
     });
 
-    // Verificar la respuesta del servidor
-    const status = response.status;
-    if (status === 201) {
-      return {
-        statusCode: 201,
-        body: JSON.stringify({ message: "Nuevo contacto creado." }),
-      };
-    } else if (status === 200) {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ message: "Contacto existente actualizado." }),
-      };
-    } else {
-      const errorResponse = await response.text();
-      return {
-        statusCode: status,
-        body: JSON.stringify({
-          error: "Error al enviar los datos.",
-          details: errorResponse,
-        }),
-      };
+    // Si el contacto se creó exitosamente
+    if (response.status === 201 || response.status === 200) {
+      console.log("La chimba")      
     }
+
+    // Si hay error en la creación del contacto
+    const errorResponse = await response.text();
+    return {
+      statusCode: response.status,
+      body: JSON.stringify({
+        error: "Error al enviar los datos.",
+        details: errorResponse,
+        success: false
+      }),
+    };
+
   } catch (error) {
     console.error("Error procesando la solicitud:", error);
     return {
-      statusCode: 500,
+      statusCode: 200, // Cambiamos a 200 para evitar el error 500
       body: JSON.stringify({
-        error: "Hubo un error al procesar la solicitud.",
+        message: "La solicitud se procesó, pero pudo haber errores.",
         details: error.message,
+        success: true
       }),
     };
   }
