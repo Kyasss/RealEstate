@@ -23,7 +23,7 @@ exports.handler = async (event, context) => {
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic ZmthXzA5VWtQemZIcktNUXdxN3dBdjdUT0R6MTVxVTM2OUNTRXo6'
+        authorization: 'Basic fka_09UkPzfHrKMQwq7wAv7TODz15qU369CSEz'
       },
       body: JSON.stringify({
         person: {
@@ -50,7 +50,7 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ message: 'Datos enviados correctamente', data: responseData }),
     };
 
-    
+
   } catch (error) {
     
     return {
