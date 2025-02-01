@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
     const phone = formData.get("phone");
 
 
-    const response = await fetch('https://api.followupboss.com/v1/eventos', {
+    const response = await fetch('https://api.followupboss.com/v1/events', {
       method: 'POST',
       headers: {
         'Authorization': 'fka_09UkPzwWHSOSDH94Mfaf8DJAgsO2k8spc4',
