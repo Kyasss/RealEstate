@@ -1680,6 +1680,8 @@ section,
 /* Input Fields (Text & Email) and Textarea */
 .contact .php-email-form input[type=text],
 .contact .php-email-form input[type=email],
+.contact .php-email-form input[type=tel],
+/* Añade esta línea */
 .contact .php-email-form textarea {
   font-size: 14px;
   padding: 10px 15px;
@@ -1692,6 +1694,8 @@ section,
 
 .contact .php-email-form input[type=text]:focus,
 .contact .php-email-form input[type=email]:focus,
+.contact .php-email-form input[type=tel]:focus,
+/* Añade esta línea */
 .contact .php-email-form textarea:focus {
   border-color: var(--accent-color);
 }

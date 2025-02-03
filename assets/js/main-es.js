@@ -88,7 +88,7 @@
    */
   function aosInit() {
     AOS.init({
-      duration: 600,
+      duration: 400,
       easing: 'ease-in-out',
       once: true,
       mirror: false
@@ -139,14 +139,15 @@ document.addEventListener('DOMContentLoaded', function () {
   // Datos de las propiedades
   const properties = [
     {
-      "title": "Terraza Moderna en la Azotea",
-      "status": "ALQUILADO 2024",
-      "description": "Este condominio en Chelsea cuenta con 3 habitaciones, 2 baños completos, un espacio de estacionamiento cubierto y una terraza en la azotea. Alquilado por $3,600 – ¡inquilinos felices!"
-    },
-    {
       "title": "Edificio de Condominios Moderno",
       "status": "ALQUILADO 2024",
       "description": "Una estructura contemporánea de cuatro pisos con revestimiento beige y blanco, grandes ventanas, estacionamiento cubierto y un diseño limpio y minimalista."
+    },
+    {
+      "title": "Terraza Moderna en la Azotea",
+      "status": "ALQUILADO 2024",
+      "description": "Este condominio en Chelsea cuenta con 3 habitaciones, 2 baños completos, un espacio de estacionamiento cubierto y una terraza en la azotea. Alquilado por $3,600 – ¡inquilinos felices!"
+
     }
   ];
 

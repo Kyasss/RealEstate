@@ -88,7 +88,7 @@
    */
   function aosInit() {
     AOS.init({
-      duration: 600,
+      duration: 400,
       easing: 'ease-in-out',
       once: true,
       mirror: false
@@ -139,14 +139,16 @@ document.addEventListener('DOMContentLoaded', function () {
   // Datos de las propiedades
   const properties = [
     {
-      title: "Modern Rooftop Deck",
-      status: "RENTED 2024",
-      description: "This Chelsea condo features 3 bedrooms, 2 full baths, a covered parking space, and a rooftop deck. Rented for $3,600 – happy tenants!"
-    },
-    {
+
       title: "Modern Condominium Building",
       status: "RENTED 2024",
       description: "A contemporary four-story structure with beige and white cladding, large windows, covered parking, and a clean, minimalist design."
+    },
+    {
+      title: "Modern Rooftop Deck",
+      status: "RENTED 2024",
+      description: "This Chelsea condo features 3 bedrooms, 2 full baths, a covered parking space, and a rooftop deck. Rented for $3,600 – happy tenants!"
+
     }
   ];
 
@@ -181,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
   updateContent();
 
   // Iniciar el carrusel
-  setInterval(nextSlide, 10000);
+  setInterval(nextSlide, 6000);
 });
 
 // Variable para almacenar los datos una vez cargados
