@@ -130,6 +130,20 @@
                       <img src="assets/img/about/imagen5.jpeg" class="d-block w-100 img-fluid rounded-4" alt="Imagen 4"
                         style="margin-top: 30px;">
                     </div>
+
+                    <!-- Previous button -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#minimalistCarousel"
+                      data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <!-- Next button -->
+                    <button class="carousel-control-next" type="button" data-bs-target="#minimalistCarousel"
+                      data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -276,8 +290,7 @@
             <h4>Contact</h4>
             <p>
               <strong>Phone:</strong> <span>+1 781 244 4394</span><br>
-              <strong>Email:</strong> <span>agentemelync
-                @realestateagentemelync.com</span><br>
+              <strong>Email:</strong> <span>emelync.agent@gmail.com</span><br>
             </p>
           </div>
         </div>
@@ -336,6 +349,28 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <style>
+    .custom-nav-btn {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .custom-nav-btn:hover {
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .custom-nav-btn .carousel-control-prev-icon,
+    .custom-nav-btn .carousel-control-next-icon {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
 
 </body>
 

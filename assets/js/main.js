@@ -208,23 +208,11 @@ async function loadJSON() {
   }
 }
 
-// Función para cargar los estados
 function loadStates() {
-  // Mantenemos la opción por defecto
-  const defaultOption = stateSelect.options[0];
-  stateSelect.innerHTML = '';
-  stateSelect.appendChild(defaultOption);
-
-  // Agregamos los estados desde el JSON
-  Object.keys(statesAndCities).forEach(state => {
-    const option = document.createElement('option');
-    option.value = state;
-    option.textContent = state;
-    stateSelect.appendChild(option);
-  });
+  stateSelect.value = 'Massachusetts';
+  loadCities('Massachusetts');
 }
 
-// Función para cargar las ciudades basadas en el estado seleccionado
 function loadCities(state) {
   // Mantenemos la opción por defecto
   const defaultOption = citySelect.options[0];
