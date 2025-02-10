@@ -510,12 +510,12 @@ h6 {
 }
 
 .image-container-square {
-  width: 75%;
+  width: 85%;
   /* Reduce el ancho al 85% del contenedor padre */
-  padding-bottom: 75%;
+  padding-bottom: 85%;
   /* Mantiene la proporción 1:1 */
   position: relative;
-  margin: 20px 10px;
+  margin: 100px 6px;
   /* Centra el contenedor */
   overflow: hidden;
   border-radius: 1rem;
