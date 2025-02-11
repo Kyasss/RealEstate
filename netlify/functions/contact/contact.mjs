@@ -29,16 +29,16 @@ exports.handler = async (event, context) => {
         authorization: 'Basic ZmthXzA5VWtQemJtdEdRbHRIYzY5WHo2NUxuVkJHTFQzMDVZazM6'
       },
       body: JSON.stringify({
-        source: "realestateagentemelync.com", // Añade la fuente del lead, cambia "your_website"
-        type: 'General Inquiry', // Usa un tipo de evento válido, para que las automatizaciones funcionen
+        source: "realestateagentemelync.com",
+        type: 'General Inquiry', 
         message: `${state} / ${city} - ${property_type} \n${message}`,
         description: subject,
         person: {
           firstName: name,
-          lastName: ' ', // Asegura que lastName no este vacio
-          emails: [{ value: email, type: 'home' }], // Agrega el type de email
-          phones: [{ value: phone, type: 'mobile' }], // Agrega el type de teléfono
-          source: "realestateagentemelync.com" // Añade la fuente del lead al objeto person también
+          lastName: ' ',
+          emails: [{ value: email, type: 'home' }], 
+          phones: [{ value: phone, type: 'mobile' }],
+          source: "realestateagentemelync.com"
         },
       }),
     });

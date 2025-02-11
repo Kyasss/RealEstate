@@ -4,33 +4,21 @@
   --nav-font: "Poppins", sans-serif;
 }
 
-/* Global Colors */
 :root {
   --background-color: #ffffff;
-  /* Background color for the entire website, including individual sections */
   --default-color: #444444;
-  /* Default color used for the majority of the text content across the entire website */
   --heading-color: #1b1b1b;
-  /* Color for headings, subheadings and title throughout the website */
   --accent-color: #a87c60;
-  /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff;
-  /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff;
-  /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
-/* Nav Menu Colors */
 :root {
   --nav-color: #444444;
-  /* The default color of the main navmenu links */
   --nav-hover-color: #000000;
-  /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff;
-  /* Used as the background color for mobile navigation menu */
 }
 
-/* Color Presets  */
 .light-background {
   --background-color: #f9f9f9;
   --surface-color: #ffffff;
@@ -44,14 +32,10 @@
   --contrast-color: #ffffff;
 }
 
-/* Smooth scroll */
 :root {
   scroll-behavior: smooth;
 }
 
-/*--------------------------------------------------------------
-# General Styling & Shared Classes
---------------------------------------------------------------*/
 body {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -79,8 +63,6 @@ h6 {
   font-family: var(--heading-font);
 }
 
-/* PHP Email Form Messages
-------------------------------*/
 .php-email-form .error-message {
   display: none;
   background: #df1529;
@@ -131,9 +113,6 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Global Header
---------------------------------------------------------------*/
 .header {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -154,37 +133,28 @@ h6 {
   margin-right: 8px;
 }
 
-/* Asegurar que el header distribuya los elementos correctamente */
 .header .container-fluid {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  /* Agrega un poco de espacio en los lados */
 }
 
-/* Ajustar el logo para que no ocupe demasiado espacio */
 .header .logo {
   flex: 1;
-  /* Permite que el logo se alinee a la izquierda */
 }
 
-/* Ajustar el navmenu para alinearlo a la derecha */
 #navmenu {
   flex: 2;
-  /* Permite que el menú ocupe más espacio */
   display: flex;
   justify-content: flex-end;
-  /* Alinea los elementos a la derecha */
   align-items: center;
   gap: 20px;
 }
 
-/* Ajustes del botón de cambio de idioma */
 .language-switch {
   position: relative;
   margin-left: 20px;
-  /* Separa del menú */
   width: 40px;
   height: 40px;
   background-color: var(--accent-color);
@@ -204,10 +174,6 @@ h6 {
   transform: scale(1.1);
 }
 
-/*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
-/* Desktop Navigation */
 @media (min-width: 1200px) {
   .navmenu {
     padding: 0;
@@ -340,7 +306,6 @@ h6 {
   }
 }
 
-/* Mobile Navigation */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
     color: var(--nav-color);
@@ -482,46 +447,35 @@ h6 {
   z-index: 1;
 }
 
-/* Precargar imágenes para evitar parpadeos */
 .carousel-inner {
   background-color: #ffffff;
-  /* Color de fondo sutil */
   border-radius: 1rem;
-  /* Asegura que el contenedor también tenga bordes redondeados */
   overflow: hidden;
-  /* Mantiene las imágenes dentro de los bordes redondeados */
 }
 
-/* Efecto de zoom suave */
 .carousel-item img {
   transform: scale(1);
   transition: transform 1.5s ease-in-out;
   border-radius: 1rem;
-  /* Bordes redondeados en las imágenes */
 }
 
 .carousel-item.active img {
   transform: scale(1.02);
 }
 
-/* Asegurarse de que todas las imágenes mantengan los bordes redondeados */
 .img-fluid {
   border-radius: 1rem !important;
 }
 
 .image-container-square {
   width: 85%;
-  /* Reduce el ancho al 85% del contenedor padre */
   padding-bottom: 85%;
-  /* Mantiene la proporción 1:1 */
   position: relative;
   margin: 100px 6px;
-  /* Centra el contenedor */
   overflow: hidden;
   border-radius: 1rem;
 }
 
-/* Estilo para la imagen más pequeña manteniendo proporción 1:1 */
 .smaller-square-image {
   position: absolute;
   top: 0;
@@ -529,12 +483,8 @@ h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Asegura que la imagen cubra todo el espacio sin distorsionarse */
 }
 
-/*--------------------------------------------------------------
-# Global Footer
---------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -627,9 +577,6 @@ h6 {
   font-size: 13px;
 }
 
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
 #preloader {
   position: fixed;
   inset: 0;
@@ -662,9 +609,6 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Scroll Top Button
---------------------------------------------------------------*/
 .scroll-top {
   position: fixed;
   visibility: hidden;
@@ -695,18 +639,12 @@ h6 {
   opacity: 1;
 }
 
-/*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
---------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
     transition-delay: 0 !important;
   }
 }
 
-/*--------------------------------------------------------------
-# Global Page Titles & Breadcrumbs
---------------------------------------------------------------*/
 .page-title {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -748,9 +686,6 @@ h6 {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-/*--------------------------------------------------------------
-# Global Sections
---------------------------------------------------------------*/
 section,
 .section {
   color: var(--default-color);
@@ -768,9 +703,6 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Global Section Titles
---------------------------------------------------------------*/
 .section-title {
   text-align: center;
   padding-bottom: 60px;
@@ -787,9 +719,6 @@ section,
   margin-bottom: 0;
 }
 
-/*--------------------------------------------------------------
-# Hero Section
---------------------------------------------------------------*/
 .hero {
   padding: 0;
 }
@@ -1048,9 +977,6 @@ section,
   width: 40px;
 }
 
-/*--------------------------------------------------------------
-# Services Section
---------------------------------------------------------------*/
 .services .service-item {
   background-color: var(--surface-color);
   box-shadow: 0px 5px 90px 0px rgba(0, 0, 0, 0.1);
@@ -1100,9 +1026,6 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Agents Section
---------------------------------------------------------------*/
 .agents .member {
   position: relative;
 }
@@ -1170,9 +1093,6 @@ section,
   margin: 0 2px;
 }
 
-/*--------------------------------------------------------------
-# Testimonials Section
---------------------------------------------------------------*/
 .testimonials .testimonial-item {
   background-color: var(--surface-color);
   box-shadow: 0px 0 20px rgba(0, 0, 0, 0.1);
@@ -1264,9 +1184,6 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# About Section
---------------------------------------------------------------*/
 .about .content .who-we-are {
   text-transform: uppercase;
   margin-bottom: 15px;
@@ -1332,9 +1249,6 @@ section,
   border-radius: 10px;
 }
 
-/*--------------------------------------------------------------
-# Vision and Mission Section
---------------------------------------------------------------*/
 .vision_mission .vision_mission-item {
   display: flex;
   flex-direction: column;
@@ -1390,9 +1304,6 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Stats Section
---------------------------------------------------------------*/
 .stats .stats-item {
   background-color: var(--surface-color);
   box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
@@ -1420,9 +1331,6 @@ section,
   font-size: 16px;
 }
 
-/*--------------------------------------------------------------
-# Features Section
---------------------------------------------------------------*/
 .features .features-image {
   position: relative;
   min-height: 400px;
@@ -1503,9 +1411,6 @@ section,
   margin-bottom: 0;
 }
 
-/*--------------------------------------------------------------
-# Service Details Section
---------------------------------------------------------------*/
 .service-details .service-box {
   background-color: var(--surface-color);
   padding: 20px;
@@ -1637,10 +1542,6 @@ section,
   color: var(--accent-color);
 }
 
-/*--------------------------------------------------------------
-# Contact Section
---------------------------------------------------------------*/
-/* Info Items Styles */
 .contact .info-item+.info-item {
   margin-top: 40px;
 }
@@ -1672,16 +1573,13 @@ section,
   font-size: 14px;
 }
 
-/* Form Container */
 .contact .php-email-form {
   height: 100%;
 }
 
-/* Input Fields (Text & Email) and Textarea */
 .contact .php-email-form input[type=text],
 .contact .php-email-form input[type=email],
 .contact .php-email-form input[type=tel],
-/* Añade esta línea */
 .contact .php-email-form textarea {
   font-size: 14px;
   padding: 10px 15px;
@@ -1695,7 +1593,6 @@ section,
 .contact .php-email-form input[type=text]:focus,
 .contact .php-email-form input[type=email]:focus,
 .contact .php-email-form input[type=tel]:focus,
-/* Añade esta línea */
 .contact .php-email-form textarea:focus {
   border-color: var(--accent-color);
 }
@@ -1706,7 +1603,6 @@ section,
   opacity: 0.7;
 }
 
-/* Select Fields */
 .contact .php-email-form select {
   font-size: 14px;
   padding: 10px 15px;
@@ -1739,7 +1635,6 @@ section,
   color: #999;
 }
 
-/* Submit Button */
 .contact .php-email-form button[type=submit] {
   color: var(--contrast-color);
   background: var(--accent-color);
@@ -1753,9 +1648,6 @@ section,
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
-/*--------------------------------------------------------------
-# Real Estate Section
---------------------------------------------------------------*/
 .real-estate .row {
   justify-content: center;
   margin: 0 auto;
@@ -1802,33 +1694,27 @@ section,
   object-fit: cover;
   z-index: 1;
   min-height: 300px;
-  /* Altura mínima si la imagen falla */
   background-color: #f0f0f0;
-  /* Color de fondo si la imagen falla */
 }
 
 .carousel-container {
   position: relative;
   overflow: hidden;
   height: 500px;
-  /* Ajusta según necesites */
 }
 
 .carousel-slide {
   display: flex;
   width: 200%;
-  /* Para acomodar las dos imágenes */
   height: 100%;
   transition: transform 0.5s ease-in-out;
 }
 
 .carousel-slide img {
   width: 50%;
-  /* Cada imagen ocupa la mitad del espacio */
   height: 100%;
   object-fit: cover;
   flex-shrink: 0;
-  /* Evita que las imágenes se compriman */
 }
 
 .real-estate .card .card-body {
@@ -1883,9 +1769,6 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Real Estate 2 Section
---------------------------------------------------------------*/
 .real-estate-2 .portfolio-details-slider img {
   width: 100%;
 }

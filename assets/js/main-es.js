@@ -1,9 +1,6 @@
 (function () {
   "use strict";
 
-  /**
-   * Apply .scrolled class to the body as the page is scrolled down
-   */
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
@@ -14,9 +11,6 @@
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
 
-  /**
-   * Mobile nav toggle
-   */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
   function mobileNavToogle() {
@@ -28,9 +22,6 @@
     mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
   }
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
   document.querySelectorAll('#navmenu a').forEach(navmenu => {
     navmenu.addEventListener('click', () => {
       if (document.querySelector('.mobile-nav-active')) {
@@ -40,9 +31,6 @@
 
   });
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
     navmenu.addEventListener('click', function (e) {
       e.preventDefault();
@@ -52,9 +40,6 @@
     });
   });
 
-  /**
-   * Preloader
-   */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
     window.addEventListener('load', () => {
@@ -62,9 +47,6 @@
     });
   }
 
-  /**
-   * Scroll top button
-   */
   let scrollTop = document.querySelector('.scroll-top');
 
   function toggleScrollTop() {
@@ -83,9 +65,6 @@
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
 
-  /**
-   * Animation on scroll function and init
-   */
   function aosInit() {
     AOS.init({
       duration: 400,
@@ -96,9 +75,7 @@
   }
   window.addEventListener('load', aosInit);
 
-  /**
-   * Auto generate the carousel indicators
-   */
+
   document.querySelectorAll('.carousel-indicators').forEach((carouselIndicator) => {
     carouselIndicator.closest('.carousel').querySelectorAll('.carousel-item').forEach((carouselItem, index) => {
       if (index === 0) {
@@ -109,9 +86,6 @@
     });
   });
 
-  /**
-   * Init swiper sliders
-   */
   function initSwiper() {
     document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
@@ -128,15 +102,11 @@
 
   window.addEventListener("load", initSwiper);
 
-  /**
-   * Initiate Pure Counter
-   */
   new PureCounter();
 
 })();
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Datos de las propiedades
   const properties = [
     {
       "title": "Edificio de Condominios Moderno",
@@ -154,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const slide = document.querySelector('.carousel-slide');
   let currentIndex = 0;
 
-  // Función para actualizar el contenido
   function updateContent() {
     const property = properties[currentIndex];
     document.querySelector('.carousel-title').textContent = property.title;
@@ -162,14 +131,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.carousel-description').textContent = property.description;
   }
 
-  // Función para cambiar la diapositiva
   function nextSlide() {
     currentIndex = (currentIndex + 1) % 2;
     slide.style.transform = `translateX(-${currentIndex * 50}%)`;
     updateContent();
   }
 
-  // Manejo de errores para las imágenes
   const images = document.querySelectorAll('.carousel-slide img');
   images.forEach(img => {
     img.onerror = function () {
@@ -178,9 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   });
 
-  // Inicializar el contenido
   updateContent();
 
-  // Iniciar el carrusel
   setInterval(nextSlide, 10000);
 });
